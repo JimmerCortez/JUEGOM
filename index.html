@@ -195,8 +195,7 @@
 
     let difficulty = 'medium';
 
-    function
-    setDifficulty(level) {
+    function setDifficulty(level) {
       difficulty = level;
       mostrarOperacion();
     }
@@ -208,14 +207,22 @@
 
     // Enlaces de sonido
     let audioCorrect = new Audio('https://freesound.org/data/previews/80/80921_1022651-lq.mp3');
-    let audioIncorrect = new Audio('https://freesound.org/data/previews/121/121099_2193266-lq.mp3');
-    let audioButtonClick = new Audio('https://pixabay.com/es/music/error-126627-210225/');
-    let audioBackground = new Audio('https://www.youtube.com/watch?v=rgjt6VDfaes');
+    let audioIncorrect = new Audio('https://www.cjoint.com/doc/24_05/NEsujyPrwBN_error-126627-210225.mp3');
+    let audioButtonClick = new Audio('aqui ba un sonido mp3');
+    let audioBackground = new Audio('https://www.cjoint.com/doc/24_05/NEsuZn7pAfN_Audio-de-WhatsApp-2024-05-18-a-las-15.47.22-7dfaa729.mp3');
 
     // Configuración de la música de fondo
-    audioBackground.loop = true; // Repetir la música
+    const loopTime = 170; // 2 minutos y 50 segundos en segundos
     audioBackground.volume = 0.5; // Volumen moderado
     audioBackground.play(); // Iniciar la música
+
+    // Reiniciar la música después de 2 minutos y 50 segundos
+    audioBackground.addEventListener('timeupdate', function() {
+      if (audioBackground.currentTime >= loopTime) {
+        audioBackground.currentTime = 0;
+        audioBackground.play();
+      }
+    });
 
     function playButtonClickSound() {
       audioButtonClick.play();
